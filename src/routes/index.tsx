@@ -487,11 +487,18 @@ function Projects() {
         {PROJECTS.map((p, i) => (
           <motion.article
             key={p.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-            className="card-glass p-6 group cursor-pointer"
+            initial={{ opacity: 0, y: 60, rotateX: -8 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -8, rotateX: 3, rotateY: -3 }}
+            onMouseMove={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+              e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+            }}
+            style={{ transformPerspective: 1000 }}
+            className="card-glass p-6 group flex flex-col [transform-style:preserve-3d]"
           >
             <div className="flex items-start justify-between">
               <span className="text-xs uppercase tracking-widest text-primary font-semibold">
@@ -511,8 +518,29 @@ function Projects() {
                 </span>
               ))}
             </div>
+            <div className="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border">
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-glow transition-colors"
+              >
+                <Github className="h-4 w-4" />
+                View Details
+              </a>
+              <a
+                href={p.demo}
+                target="_blank"
+                rel="noreferrer"
+                className="ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Live Demo
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
           </motion.article>
         ))}
+
       </div>
     </Section>
   );
