@@ -855,6 +855,3 @@ function PortfolioPage() {
     </div>
   );
 }
-
-  );
-}
