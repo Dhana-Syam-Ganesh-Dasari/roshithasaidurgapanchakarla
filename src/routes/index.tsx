@@ -218,13 +218,26 @@ function Nav() {
 
 /* ---------- HERO ---------- */
 function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+  const portraitRotate = useTransform(scrollYProgress, [0, 1], [0, -12]);
+  const meshY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+
   return (
     <section
+      ref={heroRef}
       id="top"
-      className="relative min-h-screen flex items-center pt-28 pb-16 px-4 sm:px-8 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-28 pb-16 px-4 sm:px-8 overflow-hidden [perspective:1200px]"
     >
       <div className="absolute inset-0 bg-hero-glow" />
-      <div className="absolute inset-0 bg-mesh opacity-40 animate-gradient-shift" />
+      <motion.div style={{ y: meshY }} className="absolute inset-0 bg-mesh opacity-40 animate-gradient-shift" />
+
 
       <div className="relative mx-auto max-w-6xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
         {/* LEFT — copy */}
