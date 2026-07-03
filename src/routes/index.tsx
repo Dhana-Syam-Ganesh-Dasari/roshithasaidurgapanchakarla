@@ -6,8 +6,8 @@ import {
   useInView,
   useTransform,
   AnimatePresence,
-  type MotionValue,
 } from "framer-motion";
+
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Phone,
