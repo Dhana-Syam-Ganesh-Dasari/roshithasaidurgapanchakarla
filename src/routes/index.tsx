@@ -66,20 +66,27 @@ const PROJECTS = [
     tag: "React · API",
     desc: "Real-time weather dashboard with 7-day forecasts, geolocation, and dynamic visualizations powered by public weather APIs.",
     tech: ["React", "REST API", "Chart.js"],
+    link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
+    demo: "#",
   },
   {
     title: "Surya Dairy Products",
     tag: "Full Stack",
     desc: "E-commerce style storefront for a local dairy brand with product catalog, order flow, and admin dashboard.",
     tech: ["React", "Firebase", "Tailwind"],
+    link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
+    demo: "#",
   },
   {
     title: "TO-DO List Application",
     tag: "React · CRUD",
     desc: "Elegant productivity app with local persistence, categories, priorities, and smooth micro-interactions.",
     tech: ["React", "TypeScript", "LocalStorage"],
+    link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
+    demo: "#",
   },
 ];
+
 
 const SERVICES = [
   {
