@@ -29,7 +29,7 @@ import {
 } from "lucide-react";
 import roshiAsset from "@/assets/roshitha.jpeg.asset.json";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
-import { LiquidButton, LiquidLink } from "@/components/liquid-button";
+import { LiquidLink } from "@/components/liquid-button";
 import { useTheme } from "@/hooks/use-theme";
 
 export const Route = createFileRoute("/")({
