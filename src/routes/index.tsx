@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useSpring, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useInView,
+  useTransform,
+  AnimatePresence,
+  type MotionValue,
+} from "framer-motion";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Phone,
   Mail,
@@ -20,12 +28,14 @@ import {
   MapPin,
 } from "lucide-react";
 import roshiAsset from "@/assets/roshitha.jpeg.asset.json";
+import resumeAsset from "@/assets/resume.pdf.asset.json";
 import { LiquidButton, LiquidLink } from "@/components/liquid-button";
 import { useTheme } from "@/hooks/use-theme";
 
 export const Route = createFileRoute("/")({
   component: PortfolioPage,
 });
+
 
 /* ---------- CONTACT / DATA ---------- */
 const NAME = "Roshitha Sai Durga";
