@@ -1,6 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useSpring, useInView } from "framer-motion";
-import { useRef, type ReactNode } from "react";
+import {
+  motion,
+  useScroll,
+  useSpring,
+  useInView,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
+
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import {
   Phone,
   Mail,
@@ -20,12 +28,14 @@ import {
   MapPin,
 } from "lucide-react";
 import roshiAsset from "@/assets/roshitha.jpeg.asset.json";
-import { LiquidButton, LiquidLink } from "@/components/liquid-button";
+import resumeAsset from "@/assets/resume.pdf.asset.json";
+import { LiquidLink } from "@/components/liquid-button";
 import { useTheme } from "@/hooks/use-theme";
 
 export const Route = createFileRoute("/")({
   component: PortfolioPage,
 });
+
 
 /* ---------- CONTACT / DATA ---------- */
 const NAME = "Roshitha Sai Durga";
@@ -56,20 +66,27 @@ const PROJECTS = [
     tag: "React · API",
     desc: "Real-time weather dashboard with 7-day forecasts, geolocation, and dynamic visualizations powered by public weather APIs.",
     tech: ["React", "REST API", "Chart.js"],
+    link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
+    demo: "#",
   },
   {
     title: "Surya Dairy Products",
     tag: "Full Stack",
     desc: "E-commerce style storefront for a local dairy brand with product catalog, order flow, and admin dashboard.",
     tech: ["React", "Firebase", "Tailwind"],
+    link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
+    demo: "#",
   },
   {
     title: "TO-DO List Application",
     tag: "React · CRUD",
     desc: "Elegant productivity app with local persistence, categories, priorities, and smooth micro-interactions.",
     tech: ["React", "TypeScript", "LocalStorage"],
+    link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
+    demo: "#",
   },
 ];
+
 
 const SERVICES = [
   {
@@ -201,15 +218,31 @@ function Nav() {
 
 /* ---------- HERO ---------- */
 function Hero() {
+  const heroRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+  const portraitRotate = useTransform(scrollYProgress, [0, 1], [0, -12]);
+  const meshY = useTransform(scrollYProgress, [0, 1], [0, -120]);
+
   return (
     <section
+      ref={heroRef}
       id="top"
-      className="relative min-h-screen flex items-center pt-28 pb-16 px-4 sm:px-8 overflow-hidden"
+      className="relative min-h-screen flex items-center pt-28 pb-16 px-4 sm:px-8 overflow-hidden [perspective:1200px]"
     >
       <div className="absolute inset-0 bg-hero-glow" />
-      <div className="absolute inset-0 bg-mesh opacity-40 animate-gradient-shift" />
+      <motion.div style={{ y: meshY }} className="absolute inset-0 bg-mesh opacity-40 animate-gradient-shift" />
 
-      <div className="relative mx-auto max-w-6xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
+
+      <motion.div
+        style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+        className="relative mx-auto max-w-6xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center"
+      >
         {/* LEFT — copy */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -244,11 +277,21 @@ function Hero() {
               <Sparkles className="h-4 w-4" />
               Hire Me
             </LiquidLink>
+            <LiquidLink
+              href={resumeAsset.url}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Download CV"
+            >
+              <Download className="h-4 w-4" />
+              Download CV
+            </LiquidLink>
             <LiquidLink href="#projects" variant="ghost">
               View Work
               <ArrowUpRight className="h-4 w-4" />
             </LiquidLink>
           </div>
+
 
           {/* Contact icons */}
           <div className="mt-10">
@@ -307,7 +350,8 @@ function Hero() {
           initial={{ opacity: 0, scale: 0.9, y: 40 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto w-full max-w-md lg:max-w-none"
+          style={{ rotateY: portraitRotate, transformPerspective: 1200 }}
+          className="relative mx-auto w-full max-w-md lg:max-w-none [transform-style:preserve-3d]"
         >
           <div className="relative aspect-square">
             {/* orbiting glow rings */}
@@ -357,7 +401,7 @@ function Hero() {
             </motion.div>
           </div>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
@@ -443,11 +487,18 @@ function Projects() {
         {PROJECTS.map((p, i) => (
           <motion.article
             key={p.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: i * 0.1 }}
-            className="card-glass p-6 group cursor-pointer"
+            initial={{ opacity: 0, y: 60, rotateX: -8 }}
+            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -8, rotateX: 3, rotateY: -3 }}
+            onMouseMove={(e) => {
+              const r = e.currentTarget.getBoundingClientRect();
+              e.currentTarget.style.setProperty("--mx", `${e.clientX - r.left}px`);
+              e.currentTarget.style.setProperty("--my", `${e.clientY - r.top}px`);
+            }}
+            style={{ transformPerspective: 1000 }}
+            className="card-glass p-6 group flex flex-col [transform-style:preserve-3d]"
           >
             <div className="flex items-start justify-between">
               <span className="text-xs uppercase tracking-widest text-primary font-semibold">
@@ -467,8 +518,29 @@ function Projects() {
                 </span>
               ))}
             </div>
+            <div className="mt-6 flex flex-wrap gap-2 pt-4 border-t border-border">
+              <a
+                href={p.link}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:text-primary-glow transition-colors"
+              >
+                <Github className="h-4 w-4" />
+                View Details
+              </a>
+              <a
+                href={p.demo}
+                target="_blank"
+                rel="noreferrer"
+                className="ml-auto inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors"
+              >
+                Live Demo
+                <ArrowUpRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
           </motion.article>
         ))}
+
       </div>
     </Section>
   );
@@ -655,10 +727,121 @@ function ScrollProgress() {
   );
 }
 
+/* ---------- PRELOADER ---------- */
+function Preloader({ onDone }: { onDone: () => void }) {
+  useEffect(() => {
+    // cinematic preloader: base ~2.5s + 1s per user request = 3.5s
+    const t = setTimeout(onDone, 3500);
+    return () => clearTimeout(t);
+  }, [onDone]);
+
+  return (
+    <motion.div
+      key="preloader"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-background"
+    >
+      <div className="absolute inset-0 bg-hero-glow" />
+      <div className="absolute inset-0 bg-mesh opacity-60 animate-gradient-shift" />
+
+      <div className="relative flex flex-col items-center gap-8">
+        {/* Rotating rings */}
+        <div className="relative h-40 w-40">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0 rounded-full border-2 border-dashed border-primary/60"
+          />
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-4 rounded-full border border-primary/40"
+          />
+          <motion.div
+            animate={{ scale: [0.9, 1.05, 0.9], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-8 rounded-full bg-gradient-primary shadow-glow grid place-items-center text-3xl font-bold text-primary-foreground font-display"
+          >
+            R
+          </motion.div>
+        </div>
+
+        {/* Name reveal */}
+        <div className="overflow-hidden">
+          <motion.p
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="text-lg sm:text-xl font-display font-semibold tracking-tight text-gradient"
+          >
+            {FULL_NAME}
+          </motion.p>
+        </div>
+        <div className="overflow-hidden">
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-xs uppercase tracking-[0.4em] text-muted-foreground"
+          >
+            Crafting the experience
+          </motion.p>
+        </div>
+
+        {/* Loading bar */}
+        <div className="h-0.5 w-56 overflow-hidden rounded-full bg-muted">
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: "100%" }}
+            transition={{ duration: 3.5, ease: [0.65, 0, 0.35, 1] }}
+            className="h-full w-full bg-gradient-primary"
+          />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ---------- CARD GLOW TRACKER ---------- */
+function useCardGlowTracker() {
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const card = target.closest<HTMLElement>(".card-glass");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      card.style.setProperty("--my", `${e.clientY - r.top}px`);
+    };
+    window.addEventListener("mousemove", handler);
+    return () => window.removeEventListener("mousemove", handler);
+  }, []);
+}
+
 /* ---------- PAGE ---------- */
 function PortfolioPage() {
+  const [loading, setLoading] = useState(true);
+  useCardGlowTracker();
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [loading]);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AnimatePresence>
+        {loading && <Preloader onDone={() => setLoading(false)} />}
+      </AnimatePresence>
       <ScrollProgress />
       <Nav />
       <Hero />

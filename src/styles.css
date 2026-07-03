@@ -269,19 +269,42 @@
 
 /* ============ CARD SURFACE ============ */
 @utility card-glass {
+  position: relative;
   background: color-mix(in oklab, var(--surface) 75%, transparent);
   backdrop-filter: blur(20px);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-2xl);
   box-shadow: var(--shadow-soft);
   transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%),
+      color-mix(in oklab, var(--primary) 55%, transparent),
+      transparent 40%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: -1;
+    filter: blur(24px);
+  }
 
   &:hover {
     transform: translateY(-6px);
-    border-color: color-mix(in oklab, var(--primary) 50%, transparent);
-    box-shadow: var(--shadow-elegant);
+    border-color: color-mix(in oklab, var(--primary) 60%, transparent);
+    box-shadow: var(--shadow-glow), var(--shadow-elegant);
+  }
+
+  &:hover::before {
+    opacity: 1;
   }
 }
+
 
 /* ============ TEXT UTILITIES ============ */
 @utility text-gradient {
