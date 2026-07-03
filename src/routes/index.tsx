@@ -727,10 +727,121 @@ function ScrollProgress() {
   );
 }
 
+/* ---------- PRELOADER ---------- */
+function Preloader({ onDone }: { onDone: () => void }) {
+  useEffect(() => {
+    // cinematic preloader: base ~2.5s + 1s per user request = 3.5s
+    const t = setTimeout(onDone, 3500);
+    return () => clearTimeout(t);
+  }, [onDone]);
+
+  return (
+    <motion.div
+      key="preloader"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-background"
+    >
+      <div className="absolute inset-0 bg-hero-glow" />
+      <div className="absolute inset-0 bg-mesh opacity-60 animate-gradient-shift" />
+
+      <div className="relative flex flex-col items-center gap-8">
+        {/* Rotating rings */}
+        <div className="relative h-40 w-40">
+          <motion.div
+            animate={{ rotate: 360 }}
+            transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-0 rounded-full border-2 border-dashed border-primary/60"
+          />
+          <motion.div
+            animate={{ rotate: -360 }}
+            transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
+            className="absolute inset-4 rounded-full border border-primary/40"
+          />
+          <motion.div
+            animate={{ scale: [0.9, 1.05, 0.9], opacity: [0.6, 1, 0.6] }}
+            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-8 rounded-full bg-gradient-primary shadow-glow grid place-items-center text-3xl font-bold text-primary-foreground font-display"
+          >
+            R
+          </motion.div>
+        </div>
+
+        {/* Name reveal */}
+        <div className="overflow-hidden">
+          <motion.p
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="text-lg sm:text-xl font-display font-semibold tracking-tight text-gradient"
+          >
+            {FULL_NAME}
+          </motion.p>
+        </div>
+        <div className="overflow-hidden">
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-xs uppercase tracking-[0.4em] text-muted-foreground"
+          >
+            Crafting the experience
+          </motion.p>
+        </div>
+
+        {/* Loading bar */}
+        <div className="h-0.5 w-56 overflow-hidden rounded-full bg-muted">
+          <motion.div
+            initial={{ x: "-100%" }}
+            animate={{ x: "100%" }}
+            transition={{ duration: 3.5, ease: [0.65, 0, 0.35, 1] }}
+            className="h-full w-full bg-gradient-primary"
+          />
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+/* ---------- CARD GLOW TRACKER ---------- */
+function useCardGlowTracker() {
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      const card = target.closest<HTMLElement>(".card-glass");
+      if (!card) return;
+      const r = card.getBoundingClientRect();
+      card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+      card.style.setProperty("--my", `${e.clientY - r.top}px`);
+    };
+    window.addEventListener("mousemove", handler);
+    return () => window.removeEventListener("mousemove", handler);
+  }, []);
+}
+
 /* ---------- PAGE ---------- */
 function PortfolioPage() {
+  const [loading, setLoading] = useState(true);
+  useCardGlowTracker();
+
+  useEffect(() => {
+    if (loading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [loading]);
+
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <AnimatePresence>
+        {loading && <Preloader onDone={() => setLoading(false)} />}
+      </AnimatePresence>
       <ScrollProgress />
       <Nav />
       <Hero />
@@ -742,5 +853,8 @@ function PortfolioPage() {
       <Contact />
       <Footer />
     </div>
+  );
+}
+
   );
 }
