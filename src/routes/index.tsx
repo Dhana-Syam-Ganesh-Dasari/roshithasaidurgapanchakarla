@@ -261,11 +261,21 @@ function Hero() {
               <Sparkles className="h-4 w-4" />
               Hire Me
             </LiquidLink>
+            <LiquidLink
+              href={resumeAsset.url}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Download CV"
+            >
+              <Download className="h-4 w-4" />
+              Download CV
+            </LiquidLink>
             <LiquidLink href="#projects" variant="ghost">
               View Work
               <ArrowUpRight className="h-4 w-4" />
             </LiquidLink>
           </div>
+
 
           {/* Contact icons */}
           <div className="mt-10">
