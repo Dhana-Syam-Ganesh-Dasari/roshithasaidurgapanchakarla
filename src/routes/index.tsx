@@ -239,7 +239,10 @@ function Hero() {
       <motion.div style={{ y: meshY }} className="absolute inset-0 bg-mesh opacity-40 animate-gradient-shift" />
 
 
-      <div className="relative mx-auto max-w-6xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center">
+      <motion.div
+        style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
+        className="relative mx-auto max-w-6xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center"
+      >
         {/* LEFT — copy */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
