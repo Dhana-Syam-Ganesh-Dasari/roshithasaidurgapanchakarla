@@ -838,8 +838,8 @@ function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <AnimatePresence>
-        {loading && <Preloader onDone={() => setLoading(false)} />}
+      <AnimatePresence mode="wait">
+        {loading && <Preloader key="preloader" onDone={() => setLoading(false)} />}
       </AnimatePresence>
       <ScrollProgress />
       <Nav />
