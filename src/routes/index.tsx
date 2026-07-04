@@ -67,7 +67,7 @@ const PROJECTS = [
     desc: "Real-time weather dashboard with 7-day forecasts, geolocation, and dynamic visualizations powered by public weather APIs.",
     tech: ["React", "REST API", "Chart.js"],
     link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
-    demo: "#",
+    demo: "https://dhana-syam-ganesh-dasari.github.io/WEATHR-FORECASTING-SYSTEM-/",
   },
   {
     title: "Surya Dairy Products",
@@ -75,7 +75,7 @@ const PROJECTS = [
     desc: "E-commerce style storefront for a local dairy brand with product catalog, order flow, and admin dashboard.",
     tech: ["React", "Firebase", "Tailwind"],
     link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
-    demo: "#",
+    demo: "https://surya-dairy-products.vercel.app/",
   },
   {
     title: "TO-DO List Application",
@@ -83,7 +83,7 @@ const PROJECTS = [
     desc: "Elegant productivity app with local persistence, categories, priorities, and smooth micro-interactions.",
     tech: ["React", "TypeScript", "LocalStorage"],
     link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
-    demo: "#",
+    demo: "https://personal-task-tracker-iota-five.vercel.app/",
   },
 ];
 
