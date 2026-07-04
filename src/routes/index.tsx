@@ -67,7 +67,7 @@ const PROJECTS = [
     desc: "Real-time weather dashboard with 7-day forecasts, geolocation, and dynamic visualizations powered by public weather APIs.",
     tech: ["React", "REST API", "Chart.js"],
     link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
-    demo: "#",
+    demo: "https://dhana-syam-ganesh-dasari.github.io/WEATHR-FORECASTING-SYSTEM-/",
   },
   {
     title: "Surya Dairy Products",
@@ -75,7 +75,7 @@ const PROJECTS = [
     desc: "E-commerce style storefront for a local dairy brand with product catalog, order flow, and admin dashboard.",
     tech: ["React", "Firebase", "Tailwind"],
     link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
-    demo: "#",
+    demo: "https://surya-dairy-products.vercel.app/",
   },
   {
     title: "TO-DO List Application",
@@ -83,7 +83,7 @@ const PROJECTS = [
     desc: "Elegant productivity app with local persistence, categories, priorities, and smooth micro-interactions.",
     tech: ["React", "TypeScript", "LocalStorage"],
     link: "https://github.com/Dhana-Syam-Ganesh-Dasari",
-    demo: "#",
+    demo: "https://personal-task-tracker-iota-five.vercel.app/",
   },
 ];
 
@@ -142,19 +142,19 @@ function Section({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section id={id} className="relative py-24 sm:py-32 px-4 sm:px-8">
+    <section id={id} className="relative py-20 sm:py-28 lg:py-32 px-4 sm:px-8">
       <div ref={ref} className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14"
+          className="mb-10 sm:mb-14"
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
             {eyebrow}
           </div>
-          <h2 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight">{title}</h2>
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">{title}</h2>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -233,7 +233,7 @@ function Hero() {
     <section
       ref={heroRef}
       id="top"
-      className="relative min-h-screen flex items-center pt-28 pb-16 px-4 sm:px-8 overflow-hidden [perspective:1200px]"
+      className="relative min-h-screen flex items-center pt-24 sm:pt-28 pb-16 px-4 sm:px-8 overflow-hidden [perspective:1200px]"
     >
       <div className="absolute inset-0 bg-hero-glow" />
       <motion.div style={{ y: meshY }} className="absolute inset-0 bg-mesh opacity-40 animate-gradient-shift" />
@@ -241,7 +241,7 @@ function Hero() {
 
       <motion.div
         style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
-        className="relative mx-auto max-w-6xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center"
+        className="relative mx-auto max-w-6xl w-full grid lg:grid-cols-[1.1fr_1fr] gap-10 sm:gap-12 lg:gap-16 items-center"
       >
         {/* LEFT — copy */}
         <motion.div
@@ -254,11 +254,11 @@ function Hero() {
             Open to opportunities · Available for freelance
           </div>
 
-          <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+          <h1 className="mt-6 text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] break-words">
             Hi, I'm <span className="text-gradient">{NAME}</span>
           </h1>
 
-          <p className="mt-5 text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg lg:text-xl text-muted-foreground max-w-xl leading-relaxed">
             <span className="font-semibold text-foreground">{ROLE}</span> · MCA Graduate ·
             currently <span className="font-semibold text-foreground">Analyst Trainee at Cognizant</span>.
             I craft modern, animated, production-ready web & app experiences.
@@ -279,8 +279,7 @@ function Hero() {
             </LiquidLink>
             <LiquidLink
               href={resumeAsset.url}
-              target="_blank"
-              rel="noreferrer"
+              download={resumeAsset.original_filename ?? "Roshitha_Resume.pdf"}
               aria-label="Download CV"
             >
               <Download className="h-4 w-4" />
@@ -351,7 +350,7 @@ function Hero() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           style={{ rotateY: portraitRotate, transformPerspective: 1200 }}
-          className="relative mx-auto w-full max-w-md lg:max-w-none [transform-style:preserve-3d]"
+          className="relative mx-auto w-full max-w-[18rem] sm:max-w-sm md:max-w-md lg:max-w-none [transform-style:preserve-3d]"
         >
           <div className="relative aspect-square">
             {/* orbiting glow rings */}
@@ -381,21 +380,21 @@ function Hero() {
             <motion.div
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-4 top-16 card-glass px-4 py-2.5 text-sm font-semibold"
+              className="absolute -left-2 sm:-left-4 top-12 sm:top-16 card-glass px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold"
             >
               💻 React.js
             </motion.div>
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -right-2 top-1/3 card-glass px-4 py-2.5 text-sm font-semibold"
+              className="absolute -right-1 sm:-right-2 top-1/3 card-glass px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold"
             >
               ⚡ TypeScript
             </motion.div>
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -left-2 bottom-16 card-glass px-4 py-2.5 text-sm font-semibold"
+              className="absolute -left-1 sm:-left-2 bottom-12 sm:bottom-16 card-glass px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold"
             >
               🚀 Cognizant
             </motion.div>
@@ -739,8 +738,8 @@ function Preloader({ onDone }: { onDone: () => void }) {
     <motion.div
       key="preloader"
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0, scale: 1.05, filter: "blur(16px)" }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-background"
     >
       <div className="absolute inset-0 bg-hero-glow" />
@@ -839,8 +838,8 @@ function PortfolioPage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <AnimatePresence>
-        {loading && <Preloader onDone={() => setLoading(false)} />}
+      <AnimatePresence mode="wait">
+        {loading && <Preloader key="preloader" onDone={() => setLoading(false)} />}
       </AnimatePresence>
       <ScrollProgress />
       <Nav />
