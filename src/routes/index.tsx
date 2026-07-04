@@ -738,8 +738,8 @@ function Preloader({ onDone }: { onDone: () => void }) {
     <motion.div
       key="preloader"
       initial={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      exit={{ opacity: 0, scale: 1.05, filter: "blur(16px)" }}
+      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] grid place-items-center overflow-hidden bg-background"
     >
       <div className="absolute inset-0 bg-hero-glow" />
