@@ -233,7 +233,7 @@ function Hero() {
     <section
       ref={heroRef}
       id="top"
-      className="relative min-h-screen flex items-center pt-28 pb-16 px-4 sm:px-8 overflow-hidden [perspective:1200px]"
+      className="relative min-h-screen flex items-center pt-24 sm:pt-28 pb-16 px-4 sm:px-8 overflow-hidden [perspective:1200px]"
     >
       <div className="absolute inset-0 bg-hero-glow" />
       <motion.div style={{ y: meshY }} className="absolute inset-0 bg-mesh opacity-40 animate-gradient-shift" />
@@ -241,7 +241,7 @@ function Hero() {
 
       <motion.div
         style={{ y: heroY, opacity: heroOpacity, scale: heroScale }}
-        className="relative mx-auto max-w-6xl grid lg:grid-cols-[1.1fr_1fr] gap-12 lg:gap-16 items-center"
+        className="relative mx-auto max-w-6xl w-full grid lg:grid-cols-[1.1fr_1fr] gap-10 sm:gap-12 lg:gap-16 items-center"
       >
         {/* LEFT — copy */}
         <motion.div
