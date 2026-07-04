@@ -254,11 +254,11 @@ function Hero() {
             Open to opportunities · Available for freelance
           </div>
 
-          <h1 className="mt-6 text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+          <h1 className="mt-6 text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] break-words">
             Hi, I'm <span className="text-gradient">{NAME}</span>
           </h1>
 
-          <p className="mt-5 text-lg sm:text-xl text-muted-foreground max-w-xl leading-relaxed">
+          <p className="mt-5 text-base sm:text-lg lg:text-xl text-muted-foreground max-w-xl leading-relaxed">
             <span className="font-semibold text-foreground">{ROLE}</span> · MCA Graduate ·
             currently <span className="font-semibold text-foreground">Analyst Trainee at Cognizant</span>.
             I craft modern, animated, production-ready web & app experiences.
