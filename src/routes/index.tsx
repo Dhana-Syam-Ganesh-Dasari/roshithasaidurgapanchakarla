@@ -254,7 +254,7 @@ function Hero() {
             Open to opportunities · Available for freelance
           </div>
 
-          <h1 className="mt-6 text-4xl xs:text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] break-words">
+          <h1 className="mt-6 text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] break-words">
             Hi, I'm <span className="text-gradient">{NAME}</span>
           </h1>
 
