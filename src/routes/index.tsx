@@ -380,21 +380,21 @@ function Hero() {
             <motion.div
               animate={{ y: [0, -12, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-4 top-16 card-glass px-4 py-2.5 text-sm font-semibold"
+              className="absolute -left-2 sm:-left-4 top-12 sm:top-16 card-glass px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold"
             >
               💻 React.js
             </motion.div>
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              className="absolute -right-2 top-1/3 card-glass px-4 py-2.5 text-sm font-semibold"
+              className="absolute -right-1 sm:-right-2 top-1/3 card-glass px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold"
             >
               ⚡ TypeScript
             </motion.div>
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -left-2 bottom-16 card-glass px-4 py-2.5 text-sm font-semibold"
+              className="absolute -left-1 sm:-left-2 bottom-12 sm:bottom-16 card-glass px-3 py-2 sm:px-4 sm:py-2.5 text-xs sm:text-sm font-semibold"
             >
               🚀 Cognizant
             </motion.div>
