@@ -142,19 +142,19 @@ function Section({
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <section id={id} className="relative py-24 sm:py-32 px-4 sm:px-8">
+    <section id={id} className="relative py-20 sm:py-28 lg:py-32 px-4 sm:px-8">
       <div ref={ref} className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-14"
+          className="mb-10 sm:mb-14"
         >
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-medium text-muted-foreground">
             <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse-glow" />
             {eyebrow}
           </div>
-          <h2 className="mt-4 text-4xl sm:text-5xl font-bold tracking-tight">{title}</h2>
+          <h2 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight">{title}</h2>
         </motion.div>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
