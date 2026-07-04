@@ -40,6 +40,7 @@ interface LiquidLinkProps {
   children: ReactNode;
   target?: string;
   rel?: string;
+  download?: boolean | string;
   "aria-label"?: string;
 }
 
