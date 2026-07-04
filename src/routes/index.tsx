@@ -279,8 +279,7 @@ function Hero() {
             </LiquidLink>
             <LiquidLink
               href={resumeAsset.url}
-              target="_blank"
-              rel="noreferrer"
+              download={resumeAsset.original_filename ?? "Roshitha_Resume.pdf"}
               aria-label="Download CV"
             >
               <Download className="h-4 w-4" />
