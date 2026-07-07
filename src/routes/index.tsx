@@ -785,7 +785,7 @@ function Preloader({ onDone }: { onDone: () => void }) {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-xs uppercase tracking-[0.4em] text-muted-foreground"
           >
-            Creating the experience with Full Stack Developer
+            Full Stack Developer
           </motion.p>
         </div>
 
