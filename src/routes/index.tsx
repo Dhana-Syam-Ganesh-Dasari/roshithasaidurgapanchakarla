@@ -27,7 +27,7 @@ import {
   Download,
   MapPin,
 } from "lucide-react";
-import roshiAsset from "@/assets/roshitha.jpeg.asset.json";
+import roshiImg from "@/assets/roshitha.jpg";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 import { LiquidLink } from "@/components/liquid-button";
 import { useTheme } from "@/hooks/use-theme";
