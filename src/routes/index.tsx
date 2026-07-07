@@ -46,7 +46,7 @@ const PHONE_DISPLAY = "+91 89786 59675";
 const EMAIL = "panchakarlaroshithasaidurga@gmail.com";
 const WHATSAPP = "918978659675";
 const LINKEDIN = "https://www.linkedin.com/in/dhana-syam-ganesh-dasari-002277251/";
-const INSTAGRAM = "https://www.instagram.com/___ganesh21___?igsh=YjVoYjduMHc1OHJr";
+const INSTAGRAM = "https://www.instagram.com/_pr.04._?igsh=cGsxMGt1bDV1eXNs";
 const GITHUB = "https://github.com/Dhana-Syam-Ganesh-Dasari";
 
 const SKILLS = [
@@ -785,7 +785,7 @@ function Preloader({ onDone }: { onDone: () => void }) {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-xs uppercase tracking-[0.4em] text-muted-foreground"
           >
-            Crafting the experience
+            Creating the experience with Full Stack Developer
           </motion.p>
         </div>
 
