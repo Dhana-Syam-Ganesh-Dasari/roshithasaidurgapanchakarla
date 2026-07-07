@@ -27,7 +27,7 @@ import {
   Download,
   MapPin,
 } from "lucide-react";
-import roshiAsset from "@/assets/roshitha.jpeg.asset.json";
+import roshiImg from "@/assets/roshitha.jpg";
 import resumeAsset from "@/assets/resume.pdf.asset.json";
 import { LiquidLink } from "@/components/liquid-button";
 import { useTheme } from "@/hooks/use-theme";
@@ -369,7 +369,7 @@ function Hero() {
             {/* photo */}
             <div className="absolute inset-8 rounded-full overflow-hidden border-4 border-background shadow-elegant bg-gradient-primary">
               <img
-                src={roshiAsset.url}
+                src={roshiImg}
                 alt={FULL_NAME}
                 className="h-full w-full object-cover"
                 loading="eager"
