@@ -369,7 +369,7 @@ function Hero() {
             {/* photo */}
             <div className="absolute inset-8 rounded-full overflow-hidden border-4 border-background shadow-elegant bg-gradient-primary">
               <img
-                src={roshiAsset.url}
+                src={roshiImg}
                 alt={FULL_NAME}
                 className="h-full w-full object-cover"
                 loading="eager"
